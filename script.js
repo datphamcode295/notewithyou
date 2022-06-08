@@ -171,6 +171,7 @@ addBtn.addEventListener("click", async (e) => {
             .then(response => response.json())
             .then(data => {
             console.log('Success:', data);
+            notes[index].id = data._id
 
             })
             .catch((error) => {
