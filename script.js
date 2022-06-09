@@ -54,10 +54,10 @@ function showNotes() {
         addBox.insertAdjacentHTML("afterend", liTag);
     });
 }
-showNotes();
 
-function initial(){
-    fetch('https://notebackend-21.herokuapp.com/employees')
+
+async function initial(){
+   await fetch('https://notebackend-21.herokuapp.com/employees')
   .then(response => response.json())
   .then(data => {
       console.log(data)
@@ -73,6 +73,7 @@ function initial(){
     });
 }
 initial()
+showNotes()
 
 function showMenu(elem) {
     elem.parentElement.classList.add("show");

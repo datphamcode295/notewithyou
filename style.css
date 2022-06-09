@@ -1,5 +1,6 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -60,6 +61,7 @@ body{
 .note .details{
   max-height: 165px;
   overflow-y: auto;
+  
 }
 .note .details::-webkit-scrollbar,
 .popup textarea::-webkit-scrollbar{
