@@ -128,7 +128,12 @@ async function updateNote(noteId, title, filterDesc) {
 
 
 addBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
+    e.target.disabled = true
+    // e.classList.add("show");
+    let submitbutton = document.querySelector('form button ')
+    submitbutton.classList.add('disable')
+    // console.log([x])
+    e.preventDefault()
     let title = titleTag.value.trim(),
     description = descTag.value.trim();
 
@@ -183,6 +188,8 @@ addBtn.addEventListener("click", async (e) => {
         console.log(JSON.stringify(notes))
         
         showNotes();
+        e.target.disabled = false
+        submitbutton.classList.remove('disable')
         closeIcon.click();
     }
 });

@@ -230,7 +230,12 @@ form button{
   cursor: pointer;
   font-size: 17px;
   border-radius: 4px;
-  background: #6A93F8;
+  background: #21b965;
+}
+
+form .disable{
+  background: #3edd3e;
+  /* 41f341 */
 }
 
 @media (max-width: 660px){
