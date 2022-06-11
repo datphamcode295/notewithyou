@@ -15,7 +15,7 @@ let isUpdate = false, updateId;
 
 addBox.addEventListener("click", () => {
     popupTitle.innerText = "Add a new Note";
-    addBtn.innerText = "Add Note";
+    addBtn.innerText = "Add Note ";
     popupBox.classList.add("show");
     document.querySelector("body").style.overflow = "hidden";
     if(window.innerWidth > 660) titleTag.focus();
@@ -33,6 +33,7 @@ closeIcon.addEventListener("click", () => {
 function showNotes() {
     if(!notes) return;
     document.querySelectorAll(".note").forEach(li => li.remove());
+    document.querySelector(".noteloading-box")?.remove();
     notes.forEach((note, id) => {
         let filterDesc = note.description.replaceAll("\n", '<br/>');
         let liTag = `<li class="note">
@@ -55,10 +56,22 @@ function showNotes() {
     });
 }
 
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 async function initial(){
+    const container = document.querySelectorAll(".wrapper")
+    let liLoading = `<div class="noteloading-box" style="">
+    <div style="">
+                        <i class="fa fa-spinner fa-spin" style="" ></i>
+                        </div>
+                    </div>`;
+                    addBox.insertAdjacentHTML("afterend", liLoading);     
+                
    await fetch('https://notebackend-21.herokuapp.com/employees')
   .then(response => response.json())
+//   .then(async e=>{await sleep(2000)
+// return e})
   .then(data => {
       console.log(data)
         for (let e of data) {
@@ -73,7 +86,7 @@ async function initial(){
     });
 }
 initial()
-showNotes()
+
 
 function showMenu(elem) {
     elem.parentElement.classList.add("show");
@@ -122,16 +135,20 @@ async function updateNote(noteId, title, filterDesc) {
     titleTag.value = title;
     descTag.value = description;
     popupTitle.innerText = "Update a Note";
-    addBtn.innerText = "Update Note";
+    addBtn.innerText = "Update Note ";
 }
 
 
 
 addBtn.addEventListener("click", async (e) => {
     e.target.disabled = true
+    //<i class="fa fa-spinner fa-spin"></i>
+    const loading = document.createElement("i")
+    loading.classList.add('fa','fa-spinner','fa-spin')
     // e.classList.add("show");
     let submitbutton = document.querySelector('form button ')
     submitbutton.classList.add('disable')
+    submitbutton.appendChild(loading)
     // console.log([x])
     e.preventDefault()
     let title = titleTag.value.trim(),
